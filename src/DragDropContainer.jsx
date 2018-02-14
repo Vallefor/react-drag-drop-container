@@ -126,12 +126,21 @@ class DragDropContainer extends React.Component {
 
   startDrag = (x, y) => {
     document.addEventListener(`${this.props.targetKey}Dropped`, this.props.onDrop);
+	let rect={};
+	if (this.props.customDragElement || this.props.dragClone) {
+	  rect = this.containerElem.getBoundingClientRect();
+	} else {
+	  rect={
+		left:this.containerElem.offsetLeft,
+		top:this.containerElem.offsetTop,
+	  }
+	}
     this.setState({
       clicked: true,
       clickX: x - this.state.left,
       clickY: y - this.state.top,
-      initialLeftOffset: this.state.dragged ? this.state.initialLeftOffset : this.containerElem.offsetLeft,
-      initialTopOffset: this.state.dragged ? this.state.initialTopOffset : this.containerElem.offsetTop,
+      initialLeftOffset: this.state.dragged ? this.state.initialLeftOffset : rect.left,
+      initialTopOffset: this.state.dragged ? this.state.initialTopOffset : rect.top,
     });
     this.props.onDragStart(this.props.dragData);
   };
@@ -203,8 +212,9 @@ class DragDropContainer extends React.Component {
     let dx;
     let dy;
     if (this.props.customDragElement || this.props.dragClone) {
-      dx = this.state.initialLeftOffset - this.containerElem.offsetLeft;
-      dy = this.state.initialTopOffset - this.containerElem.offsetTop;
+	  let rect=this.containerElem.getBoundingClientRect();
+      dx = this.state.initialLeftOffset - rect.left;
+      dy = this.state.initialTopOffset - rect.top;
     } else {
       dx = (this.state.initialLeftOffset + this.state.left) - this.containerElem.offsetLeft;
       dy = (this.state.initialTopOffset + this.state.top) - this.containerElem.offsetTop;

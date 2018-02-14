@@ -16,10 +16,12 @@ class DragDropGhost extends React.Component {
   componentWillReceiveProps(nextProps) {
 	console.log('parentNode',this.props.parentNode);
 	if(this.props.dragging!==nextProps.dragging && nextProps.dragging) {
+	  /*
 	  this.setState({
 		scroll_top:document.getElementsByTagName("html")[0].scrollTop,
 		scroll_left:document.getElementsByTagName("html")[0].scrollLeft,
 	  });
+	  */
 	}
   }
   componentDidMount() {
@@ -49,6 +51,7 @@ class DragDropGhost extends React.Component {
       left: this.props.parentState.mouse.x-(par.clickX-par.initialLeftOffset)-scroll.left,
       top: this.props.parentState.mouse.y-(par.clickY-par.initialTopOffset)-scroll.top,
       display: this.props.dragging ? 'block' : 'none',
+	  pointerEvents:'none',
     };
 	if(!this.props.dragging) {
 	  return null;
