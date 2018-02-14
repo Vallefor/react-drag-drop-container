@@ -183,7 +183,6 @@ class DragDropContainer extends React.Component {
 
   // Drop
   handleMouseUp = (e) => {
-	document.removeEventListener(`${this.props.targetKey}Dropped`, this.props.onDrop);
     this.setState({ clicked: false });
     if (this.state.dragging) {
 	  this._dragging=false;
@@ -191,6 +190,7 @@ class DragDropContainer extends React.Component {
       document.removeEventListener('mouseup', this.handleMouseUp);
       this.drop(e.clientX, e.clientY);
     }
+	document.removeEventListener(`${this.props.targetKey}Dropped`, this.props.onDrop);
   };
 
   handleTouchEnd = (e) => {

@@ -19,7 +19,7 @@ class Animal extends React.Component {
   }
 
   dropped(e) {
-    e.sourceElem.style.visibility="hidden";
+    //e.sourceElem.style.visibility="hidden";
     alert(`Thanks for the ${e.dragData.label}! ${e.dragData.tastes}!`);
     this.setState({highlighted: false});
   }
