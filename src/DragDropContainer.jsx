@@ -139,6 +139,8 @@ class DragDropContainer extends React.Component {
       clicked: true,
       clickX: x - this.state.left,
       clickY: y - this.state.top,
+	  containerWidth:this.containerElem.clientWidth,
+	  containerHeight:this.containerElem.clientHeight,
       initialLeftOffset: this.state.dragged ? this.state.initialLeftOffset : rect.left,
       initialTopOffset: this.state.dragged ? this.state.initialTopOffset : rect.top,
     });

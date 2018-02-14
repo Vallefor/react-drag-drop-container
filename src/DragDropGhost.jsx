@@ -52,6 +52,8 @@ class DragDropGhost extends React.Component {
       top: this.props.parentState.mouse.y-(par.clickY-par.initialTopOffset)-scroll.top,
       display: this.props.dragging ? 'block' : 'none',
 	  pointerEvents:'none',
+	  width:par.containerWidth,
+	  height:par.containerHeight,
     };
 	if(!this.props.dragging) {
 	  return null;
