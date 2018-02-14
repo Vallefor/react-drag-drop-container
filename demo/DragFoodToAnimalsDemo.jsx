@@ -55,6 +55,7 @@ class Food extends React.Component {
   render() {
     return (
       <DragDropContainer
+		/*elementProps={{ style: {display:'block' } }}*/
         targetKey={this.props.targetKey}
         dragClone={this.props.dragClone || false}
         returnToBase={true}

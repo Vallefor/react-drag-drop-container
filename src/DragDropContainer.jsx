@@ -212,7 +212,7 @@ class DragDropContainer extends React.Component {
   render() {
     const styles = {
       position: 'relative',
-	  display:this.props.style && this.props.style.display?this.props.style.display:'inline-block'
+	  display:this.props.elementProps.style && this.props.elementProps.style.display?this.props.elementProps.style.display:'inline-block'
     };
 
     let ghost = '';
@@ -242,11 +242,14 @@ class DragDropContainer extends React.Component {
       styles.zIndex = this.state.dragging || this.state.dragged ? (this.props.zIndex) : 'inherit';
       styles.cursor = this.state.dragging ? 'move' : 'pointer';
     }
-	for(let i in this.props.style) {
-	  styles[i]=this.props.style[i];
+	
+	if(this.props.elementProps.style) {
+	  for (let i in this.props.elementProps.style) {
+		styles[i] = this.props.elementProps.style[i];
+	  }
 	}
     return (
-      <div {...this.props} style={styles} ref={(container) => { this.containerElem = container; }}>
+      <div {...this.props.elementProps} style={styles} ref={(container) => { this.containerElem = container; }}>
         {this.props.children}
         {ghost}
       </div>
@@ -256,7 +259,8 @@ class DragDropContainer extends React.Component {
 
 DragDropContainer.propTypes = {
   children: React.PropTypes.node.isRequired,
-
+  elementProps: React.PropTypes.object,
+  
   // Determines what you can drop on
   targetKey: React.PropTypes.string,
 
@@ -297,6 +301,7 @@ DragDropContainer.propTypes = {
 
 DragDropContainer.defaultProps = {
   targetKey: 'ddc',
+  elementProps:{},
   customDragElement: null,
   dragClone: false,
   dragCloneOpacity: 0.9,
