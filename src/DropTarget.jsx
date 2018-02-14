@@ -6,11 +6,20 @@ class DropTarget extends React.Component {
     super(props);
     this.elem = null;
     this.handleDrop = this.handleDrop.bind(this);
+	
+	this._dragEnterHandler=(e) => { this.props.onDragEnter(e); };
+	this._dragLeaveHandler=(e) => { this.props.onDragLeave(e); };
+	this._dragDropHandler=(e) => { this.handleDrop(e);};
+  }
+  componentWillUnmount() {
+	this.elem.removeEventListener(`${this.props.targetKey}DragEnter`, this._dragEnterHandler, false);
+	this.elem.removeEventListener(`${this.props.targetKey}DragLeave`, this._dragLeaveHandler, false);
+	this.elem.removeEventListener(`${this.props.targetKey}Drop`, this._dragDropHandler, false);
   }
   componentDidMount() {
-    this.elem.addEventListener(`${this.props.targetKey}DragEnter`, (e) => { this.props.onDragEnter(e); }, false);
-    this.elem.addEventListener(`${this.props.targetKey}DragLeave`, (e) => { this.props.onDragLeave(e); }, false);
-    this.elem.addEventListener(`${this.props.targetKey}Drop`, (e) => { this.handleDrop(e); }, false);
+    this.elem.addEventListener(`${this.props.targetKey}DragEnter`, this._dragEnterHandler, false);
+    this.elem.addEventListener(`${this.props.targetKey}DragLeave`, this._dragLeaveHandler, false);
+    this.elem.addEventListener(`${this.props.targetKey}Drop`, this._dragDropHandler, false);
   }
 
   createEvent(eventName, eventData) {
