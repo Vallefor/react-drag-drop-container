@@ -212,7 +212,7 @@ class DragDropContainer extends React.Component {
   render() {
     const styles = {
       position: 'relative',
-      display: 'inline-block',
+	  display:this.props.style && this.props.style.display?this.props.style.display:'inline-block'
     };
 
     let ghost = '';
@@ -242,8 +242,11 @@ class DragDropContainer extends React.Component {
       styles.zIndex = this.state.dragging || this.state.dragged ? (this.props.zIndex) : 'inherit';
       styles.cursor = this.state.dragging ? 'move' : 'pointer';
     }
+	for(let i in this.props.style) {
+	  styles[i]=this.props.style[i];
+	}
     return (
-      <div style={styles} ref={(container) => { this.containerElem = container; }}>
+      <div {...this.props} style={styles} ref={(container) => { this.containerElem = container; }}>
         {this.props.children}
         {ghost}
       </div>
