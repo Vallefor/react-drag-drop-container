@@ -41,7 +41,7 @@ class DragDropGhost extends React.Component {
 	  top:this.state.scroll_top,
 	  left:this.state.scroll_left,
 	};
-	console.log('scroll',scroll);
+	console.log('scroll',scroll,par);
 	
     const styles = {
       position: 'fixed',
