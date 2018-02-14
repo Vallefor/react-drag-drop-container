@@ -144,7 +144,7 @@ class DragDropContainer extends React.Component {
       initialLeftOffset: this.state.dragged ? this.state.initialLeftOffset : rect.left,
       initialTopOffset: this.state.dragged ? this.state.initialTopOffset : rect.top,
     });
-    this.props.onDragStart(this.props.dragData);
+    //this.props.onDragStart(this.props.dragData);
   };
 
   // During Drag
@@ -174,19 +174,22 @@ class DragDropContainer extends React.Component {
     if (!this.props.xOnly) { stateChanges.top = (dy + y) - this.state.clickY; }
 	stateChanges.mouse={x,y};
     this.setState(stateChanges);
-    this.props.onDrag(this.props.dragData, this.currentTarget, x, y);
+	if(!this._dragging) {
+	  this._dragging=true;
+	  this.props.onDragStart(this.props.dragData);
+	}
+	this.props.onDrag(this.props.dragData, this.currentTarget, x, y);
   };
 
   // Drop
   handleMouseUp = (e) => {
     this.setState({ clicked: false });
     if (this.state.dragging) {
+	  this._dragging=false;
       document.removeEventListener('mousemove', this.handleMouseMove);
       document.removeEventListener('mouseup', this.handleMouseUp);
       this.drop(e.clientX, e.clientY);
-    } else {
-	  this.drop(e.clientX, e.clientY);
-	}
+    }
   };
 
   handleTouchEnd = (e) => {
