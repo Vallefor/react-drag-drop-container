@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import DragDropGhost from './DragDropGhost';
 
 function usesLeftButton(e) {
@@ -19,6 +20,7 @@ class DragDropContainer extends React.Component {
       clicked: false,
       dragging: false,
       dragged: false,
+	  mouse:{ x:0,y:0 }
     };
 
     // The DOM elem we're dragging, and the elements we're dragging over.
@@ -159,6 +161,7 @@ class DragDropContainer extends React.Component {
     const stateChanges = { dragging: true };
     if (!this.props.yOnly) { stateChanges.left = (dx + x) - this.state.clickX; }
     if (!this.props.xOnly) { stateChanges.top = (dy + y) - this.state.clickY; }
+	stateChanges.mouse={x,y};
     this.setState(stateChanges);
     this.props.onDrag(this.props.dragData, this.currentTarget, x, y);
   };
@@ -229,6 +232,7 @@ class DragDropContainer extends React.Component {
         <DragDropGhost
           dragging={this.state.dragging} left={this.state.left} top={this.state.top} zIndex={this.props.zIndex}
           setGhostElem={this.setGhostElem}
+		  parentState={this.state}
         >
           <div style={{ opacity: this.props.dragCloneOpacity, cursor: 'move' }}>
             {ghostContent}
@@ -258,45 +262,45 @@ class DragDropContainer extends React.Component {
 }
 
 DragDropContainer.propTypes = {
-  children: React.PropTypes.node.isRequired,
-  elementProps: React.PropTypes.object,
+  children: PropTypes.node.isRequired,
+  elementProps: PropTypes.object,
   
   // Determines what you can drop on
-  targetKey: React.PropTypes.string,
+  targetKey: PropTypes.string,
 
   // If provided, we'll drag this instead of the actual object. Takes priority over dragClone if both are set
-  customDragElement: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.node]),
+  customDragElement: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
 
   // If true, then we will drag a clone of the object instead of the object itself. See also customDragElement
-  dragClone: React.PropTypes.bool,
+  dragClone: PropTypes.bool,
 
   // ghost will display with this opacity
-  dragCloneOpacity: React.PropTypes.number,
+  dragCloneOpacity: PropTypes.number,
 
   // We will pass this data to the target when you drag or drop over it
-  dragData: React.PropTypes.object,
+  dragData: PropTypes.object,
 
   // If included, we'll only let you drag by grabbing elements with this className
-  dragHandleClassName: React.PropTypes.string,
+  dragHandleClassName: PropTypes.string,
 
   // if True, then dragging is turned off
-  noDragging: React.PropTypes.bool,
+  noDragging: PropTypes.bool,
 
   // callbacks (optional):
-  onDrop: React.PropTypes.func,
-  onDrag: React.PropTypes.func,
-  onDragEnd: React.PropTypes.func,
-  onDragStart: React.PropTypes.func,
+  onDrop: PropTypes.func,
+  onDrag: PropTypes.func,
+  onDragEnd: PropTypes.func,
+  onDragStart: PropTypes.func,
 
   // If true, then object will return to its starting point after you let go of it
-  returnToBase: React.PropTypes.bool,
+  returnToBase: PropTypes.bool,
 
   // Constrain dragging to the x or y directions only
-  xOnly: React.PropTypes.bool,
-  yOnly: React.PropTypes.bool,
+  xOnly: PropTypes.bool,
+  yOnly: PropTypes.bool,
 
   // Defaults to 1000 while dragging, but you can customize it if you need it to go higher
-  zIndex: React.PropTypes.number,
+  zIndex: PropTypes.number,
 };
 
 DragDropContainer.defaultProps = {

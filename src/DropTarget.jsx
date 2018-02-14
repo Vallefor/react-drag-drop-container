@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class DropTarget extends React.Component {
   constructor(props) {
@@ -43,18 +44,18 @@ class DropTarget extends React.Component {
 }
 
 DropTarget.propTypes = {
-  children: React.PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired,
 
   // needs to match the targetKey in the DragDropContainer
-  targetKey: React.PropTypes.string,
+  targetKey: PropTypes.string,
 
   // data that gets sent back to the DragDropContainer and shows up in its onDrop() callback event
-  dropData: React.PropTypes.object,
+  dropData: PropTypes.object,
 
   // callbacks
-  onDragEnter: React.PropTypes.func,
-  onDragLeave: React.PropTypes.func,
-  onHit: React.PropTypes.func,
+  onDragEnter: PropTypes.func,
+  onDragLeave: PropTypes.func,
+  onHit: PropTypes.func,
 };
 
 DropTarget.defaultProps = {

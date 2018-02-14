@@ -31,7 +31,7 @@
     "react"
   ],
   "devDependencies": {
-    "babel-core": "^6.24.0",
+    "babel-core": "^6.26.0",
     "babel-loader": "^6.4.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-env": "^1.2.2",
@@ -44,17 +44,20 @@
     "eslint-plugin-react": "^6.10.3",
     "http-server": "^0.9.0",
     "node-sass": "^4.5.1",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "sass-loader": "^6.0.3",
     "shortid": "^2.2.8",
     "style-loader": "^0.16.1",
-    "webpack": "^2.2.1",
+    "webpack": "^3.11.0",
     "webpack-dev-server": "^2.4.2"
   },
   "peerDependencies": {
     "react": ">=0.14.0",
     "react-dom": ">=0.14.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "babel": "^6.23.0",
+    "prop-types": "^15.6.0"
+  }
 }
