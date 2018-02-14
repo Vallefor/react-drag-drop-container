@@ -14,7 +14,7 @@ class DragDropGhost extends React.Component {
 	}
   }
   componentWillReceiveProps(nextProps) {
-	console.log('parentNode',this.props.parentNode);
+	//console.log('parentNode',this.props.parentNode);
 	if(this.props.dragging!==nextProps.dragging && nextProps.dragging) {
 	  /*
 	  this.setState({
@@ -43,7 +43,7 @@ class DragDropGhost extends React.Component {
 	  top:this.state.scroll_top,
 	  left:this.state.scroll_left,
 	};
-	console.log('scroll',scroll,par);
+	//console.log('scroll',scroll,par);
 	
     const styles = {
       position: 'fixed',
