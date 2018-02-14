@@ -202,7 +202,7 @@ class DragDropContainer extends React.Component {
   };
 
   drop = (x, y) => {
-    document.removeEventListener(`${this.props.targetKey}Dropped`, this.handleDrop);
+    document.removeEventListener(`${this.props.targetKey}Dropped`, this.props.onDrop);
     this.generateDropEvent(x, y);
     if (this.containerElem) {
       if (this.props.returnToBase) {
