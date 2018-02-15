@@ -125,6 +125,7 @@ class DragDropContainer extends React.Component {
   };
 
   startDrag = (x, y) => {
+	console.log('bind dropped!');
     document.addEventListener(`${this.props.targetKey}Dropped`, this.props.onDrop);
 	let rect={};
 	if (this.props.customDragElement || this.props.dragClone) {
@@ -190,6 +191,7 @@ class DragDropContainer extends React.Component {
       document.removeEventListener('mouseup', this.handleMouseUp);
       this.drop(e.clientX, e.clientY);
     }
+	console.log('unbind dropped!');
 	document.removeEventListener(`${this.props.targetKey}Dropped`, this.props.onDrop);
   };
 
