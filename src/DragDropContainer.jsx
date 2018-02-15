@@ -205,8 +205,8 @@ class DragDropContainer extends React.Component {
   };
 
   drop = (x, y) => {
-	this.props.onDragEnd(this.props.dragData, this.currentTarget, x, y);
     this.generateDropEvent(x, y);
+	this.props.onDragEnd(this.props.dragData, this.currentTarget, x, y);
     if (this.containerElem) {
       if (this.props.returnToBase) {
         this.setState({ left: 0, top: 0, dragging: false });
@@ -214,6 +214,7 @@ class DragDropContainer extends React.Component {
         this.setState({ dragged: true, dragging: false });
       }
     }
+    
   };
 
   checkForOffsetChanges = () => {
