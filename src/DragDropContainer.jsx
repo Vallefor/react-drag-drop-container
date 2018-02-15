@@ -29,8 +29,10 @@ class DragDropContainer extends React.Component {
     this.containerElem = null;
     this.currentTarget = null;
     this.prevTarget = null;
+	
+	this._droppedEvent=(e)=>{ this.props.onDrop(e); }
   }
-
+  
   componentDidMount() {
     this.dragElem = this.ghostElem || this.containerElem;
     // set draggable attribute 'false' on any images, to prevent conflicts w browser native dragging
@@ -126,7 +128,7 @@ class DragDropContainer extends React.Component {
 
   startDrag = (x, y) => {
 	console.log('bind dropped!');
-    document.addEventListener(`${this.props.targetKey}Dropped`, this.props.onDrop);
+    document.addEventListener(`${this.props.targetKey}Dropped`, this._droppedEvent);
 	let rect={};
 	if (this.props.customDragElement || this.props.dragClone) {
 	  rect = this.containerElem.getBoundingClientRect();
@@ -192,7 +194,7 @@ class DragDropContainer extends React.Component {
       this.drop(e.clientX, e.clientY);
     }
 	console.log('unbind dropped!');
-	document.removeEventListener(`${this.props.targetKey}Dropped`, this.props.onDrop);
+	document.removeEventListener(`${this.props.targetKey}Dropped`, this._droppedEvent);
   };
 
   handleTouchEnd = (e) => {
