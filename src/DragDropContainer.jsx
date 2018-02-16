@@ -188,18 +188,18 @@ class DragDropContainer extends React.Component {
     this.setState({ clicked: false });
     if (this.state.dragging) {
 	  this._dragging=false;
-      document.removeEventListener('mousemove', this.handleMouseMove);
-      document.removeEventListener('mouseup', this.handleMouseUp);
       this.drop(e.clientX, e.clientY);
     }
+	document.removeEventListener('mousemove', this.handleMouseMove);
+	document.removeEventListener('mouseup', this.handleMouseUp);
 	document.removeEventListener(`${this.props.targetKey}Dropped`, this._droppedEvent);
   };
 
   handleTouchEnd = (e) => {
     this.setState({ clicked: false });
+	document.removeEventListener('touchmove', this.handleTouchMove);
+	document.removeEventListener('touchend', this.handleTouchEnd);
     if (this.state.dragging) {
-      document.removeEventListener('touchmove', this.handleTouchMove);
-      document.removeEventListener('touchend', this.handleTouchEnd);
       this.drop(e.changedTouches[0].clientX, e.changedTouches[0].clientY);
     }
   };
