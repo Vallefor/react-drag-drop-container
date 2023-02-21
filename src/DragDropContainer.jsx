@@ -377,7 +377,7 @@ DragDropContainer.defaultProps = {
   xOnly: false,
   yOnly: false,
   zIndex: 1000,
-  dragStartThreshold: 10,
+  dragStartThreshold: 0,
 };
 
 export default DragDropContainer;
