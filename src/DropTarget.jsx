@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class DropTarget extends React.Component {
+class DropTarget extends Component {
   constructor(props) {
     super(props);
     this.elem = null;

@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Portal from './Portal.jsx';
 /**
  * Optional "ghost" node for dragging with DragDropContainer
  */
 
-class DragDropGhost extends React.Component {
+class DragDropGhost extends Component {
   constructor(props) {
 	super(props);
 	this.state={

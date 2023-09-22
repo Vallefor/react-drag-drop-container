@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DragDropGhost from './DragDropGhost';
 
@@ -7,7 +7,7 @@ function usesLeftButton(e) {
   return button === 1;
 }
 
-class DragDropContainer extends React.Component {
+class DragDropContainer extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
