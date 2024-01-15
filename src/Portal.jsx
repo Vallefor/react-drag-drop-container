@@ -19,8 +19,8 @@ class Portal extends Component {
 			document.body.removeChild(this.portalElement);
 		}*/
 		if (this.defaultNode) {
-			this.defaultNode = null;
 			document.body.removeChild(this.defaultNode);
+			this.defaultNode = null;
 		}
 	}
 
