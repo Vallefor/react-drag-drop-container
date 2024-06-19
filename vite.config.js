@@ -9,7 +9,7 @@ export default defineConfig({
     lib: {
       name: "react-drag-drop-container",
       entry: resolve(__dirname, 'lib/index.jsx'),
-      fileName: 'my-lib'
+      fileName: 'react-drag-drop-container'
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
