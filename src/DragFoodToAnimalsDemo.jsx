@@ -1,5 +1,13 @@
 import React from 'react';
-import { DragDropContainer, DropTarget } from '../src/index';
+import { DragDropContainer, DropTarget } from '../lib/index';
+import gorilla from "./img/gorilla.png";
+import puppy from "./img/puppy.png";
+import trashcan from "./img/trashcan.png";
+import orange from "./img/orange.png";
+import pickle from "./img/pickle.png";
+import banana from "./img/banana.png";
+import surprise from "./img/surprise.png";
+
 
 class Animal extends React.Component {
   constructor(props) {
@@ -79,14 +87,14 @@ export default class DragFoodToAnimalsDemo extends React.Component {
         <div className="animals">
           <DragDropContainer>
             <Animal targetKey="fruitsAndVeggies" name="Kong">
-              <img src="img/gorilla.png" width="100"/>
+              <img src={gorilla} width="100"/>
               <h5>I eat fruit</h5>
             </Animal>
           </DragDropContainer>
 
           <DragDropContainer>
             <Animal targetKey="dogFood" name="Skippy">
-              <img src="img/puppy.png" width="100"/>
+              <img src={puppy} width="100"/>
               <h5>I eat meat & pickles</h5>
             </Animal>
           </DragDropContainer>
@@ -94,17 +102,17 @@ export default class DragFoodToAnimalsDemo extends React.Component {
           <DragDropContainer>
             <Animal targetKey="dogFood" name="Bozo">
               <Animal targetKey="fruitsAndVeggies" name="Bozo">
-                <img src="img/trashcan.png" width="100"/>
+                <img src={trashcan} width="100"/>
                 <h5>I eat everything</h5>
               </Animal>
             </Animal>
           </DragDropContainer>
         </div>
         <div className="foods">
-          <Food targetKey="fruitsAndVeggies" label="orange" tastes="Delicious" image="img/orange.png"/>
-          <Food targetKey="dogFood" label="pickle" tastes="It tasted weird" image="img/pickle.png"/>
-          <Food dragClone={true} targetKey="dogFood" label="cheeseburger" tastes="Yummy" image="img/surprise.png"/>
-          <Food customDragElement={customElem} targetKey="fruitsAndVeggies" label="bananas" tastes="Yummy" image="img/banana.png"/>
+          <Food targetKey="fruitsAndVeggies" label="orange" tastes="Delicious" image={orange}/>
+          <Food targetKey="dogFood" label="pickle" tastes="It tasted weird" image={pickle} />
+          <Food dragClone={true} targetKey="dogFood" label="cheeseburger" tastes="Yummy" image={surprise}/>
+          <Food customDragElement={customElem} targetKey="fruitsAndVeggies" label="bananas" tastes="Yummy" image={banana}/>
         </div>
         <ul>
           <li><strong>targetKey</strong> to specify compatible drag items and drop targets.</li>

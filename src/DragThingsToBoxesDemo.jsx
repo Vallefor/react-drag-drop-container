@@ -1,6 +1,13 @@
 import React from 'react';
-var shortid = require('shortid');
-import { DragDropContainer, DropTarget } from '../src/index';
+import shortid from "shortid";
+import { DragDropContainer, DropTarget } from '../lib/index';
+import gorilla from "./img/gorilla.png";
+import puppy from "./img/puppy.png";
+import trashcan from "./img/trashcan.png";
+import orange from "./img/orange.png";
+import pickle from "./img/pickle.png";
+import banana from "./img/banana.png";
+import surprise from "./img/surprise.png";
 
 class BoxItem extends React.Component {
   // the things that appear in the boxes
@@ -170,12 +177,12 @@ export default class DragThingsToBoxesDemo extends React.Component {
         <h2>Demo: Drag things into boxes</h2>
         You can also drag between boxes and drag to re-order within boxes, and drag the boxes using the x as a drag handle.
         <div className="things_to_drag">
-          <BoxMe targetKey="box" label="bananas"  image="img/banana.png"/>
-          <BoxMe targetKey="box" label="cheeseburger"  image="img/surprise.png"/>
-          <BoxMe targetKey="box" label="orange" image="img/orange.png"/>
-          <BoxMe targetKey="box" label="pickle" image="img/pickle.png"/>
-          <BoxMe targetKey="box" label="gorilla" image="img/gorilla.png"/>
-          <BoxMe targetKey="box" label="puppy" image="img/puppy.png"/>
+          <BoxMe targetKey="box" label="bananas"  image={banana}/>
+          <BoxMe targetKey="box" label="cheeseburger"  image={surprise} />
+          <BoxMe targetKey="box" label="orange" image={orange}/>
+          <BoxMe targetKey="box" label="pickle" image={pickle}/>
+          <BoxMe targetKey="box" label="gorilla" image={gorilla}/>
+          <BoxMe targetKey="box" label="puppy" image={puppy}/>
         </div>
         <div className="boxes">
           <Box targetKey="box"/>
