@@ -89,9 +89,10 @@ class DragDropContainer extends Component {
 
 	setCurrentTarget = (x, y) => {
 		// drop the z-index to get this elem out of the way, figure out what we're dragging over, then reset the z index
+		const prevZIndex = this.dragElem.style.zIndex;
 		this.dragElem.style.zIndex = -1;
 		const target = document.elementFromPoint(x, y) || document.body;
-		this.dragElem.style.zIndex = this.props.zIndex;
+		this.dragElem.style.zIndex = prevZIndex;
 		// prevent it from selecting itself as the target
 		this.currentTarget = this.dragElem.contains(target) ? document.body : target;
 	};
@@ -238,7 +239,6 @@ class DragDropContainer extends Component {
 
 	drop = (x, y) => {
 		this.generateDropEvent(x, y);
-		this.props.onDragEnd(this.props.dragData, this.currentTarget, x, y);
 		if (this.containerElem) {
 			if (this.props.returnToBase) {
 				this.setState({left: 0, top: 0, dragging: false});
@@ -246,7 +246,7 @@ class DragDropContainer extends Component {
 				this.setState({dragged: true, dragging: false});
 			}
 		}
-
+		this.props.onDragEnd(this.props.dragData, this.currentTarget, x, y);
 	};
 
 	checkForOffsetChanges = () => {
