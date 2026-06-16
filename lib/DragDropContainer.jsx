@@ -295,7 +295,7 @@ class DragDropContainer extends Component {
 			// dragging will be applied to the DragDropContainer itself
 			styles.left = this.state.left;
 			styles.top = this.state.top;
-			styles.zIndex = this.state.dragging || this.state.dragged ? (this.props.zIndex) : 'inherit';
+			styles.zIndex = this.state.dragging ? (this.props.zIndex) : 'inherit';
 			styles.cursor = this.state.dragging ? 'move' : 'pointer';
 		}
 
