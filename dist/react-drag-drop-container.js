@@ -1,7 +1,7 @@
 var mt = Object.defineProperty;
 var Et = (g, l, r) => l in g ? mt(g, l, { enumerable: !0, configurable: !0, writable: !0, value: r }) : g[l] = r;
 var v = (g, l, r) => Et(g, typeof l != "symbol" ? l + "" : l, r);
-import we, { Component as z } from "react";
+import we, { Component as B } from "react";
 import c from "prop-types";
 import yt from "react-dom";
 var re = { exports: {} }, Y = {};
@@ -157,7 +157,7 @@ function _t() {
         M++;
       }
     }
-    function Be() {
+    function ze() {
       {
         if (M--, M === 0) {
           var e = {
@@ -208,8 +208,8 @@ function _t() {
     }
     var X = !1, H;
     {
-      var ze = typeof WeakMap == "function" ? WeakMap : Map;
-      H = new ze();
+      var Be = typeof WeakMap == "function" ? WeakMap : Map;
+      H = new Be();
     }
     function he(e, t) {
       if (!e || X)
@@ -277,7 +277,7 @@ function _t() {
             }
         }
       } finally {
-        X = !1, V.current = d, Be(), Error.prepareStackTrace = f;
+        X = !1, V.current = d, ze(), Error.prepareStackTrace = f;
       }
       var I = e ? e.displayName || e.name : "", w = I ? K(I) : "";
       return typeof e == "function" && H.set(e, w), w;
@@ -319,7 +319,7 @@ function _t() {
       return "";
     }
     var A = Object.prototype.hasOwnProperty, ge = {}, ve = j.ReactDebugCurrentFrame;
-    function B(e) {
+    function z(e) {
       if (e) {
         var t = e._owner, n = U(e.type, e._source, t ? t.type : null);
         ve.setExtraStackFrame(n);
@@ -341,7 +341,7 @@ function _t() {
             } catch (p) {
               o = p;
             }
-            o && !(o instanceof Error) && (B(f), m("%s: type specification of %s `%s` is invalid; the type checker function must return `null` or an `Error` but returned a %s. You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument).", s || "React class", n, u, typeof o), B(null)), o instanceof Error && !(o.message in ge) && (ge[o.message] = !0, B(f), m("Failed %s type: %s", n, o.message), B(null));
+            o && !(o instanceof Error) && (z(f), m("%s: type specification of %s `%s` is invalid; the type checker function must return `null` or an `Error` but returned a %s. You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument).", s || "React class", n, u, typeof o), z(null)), o instanceof Error && !(o.message in ge) && (ge[o.message] = !0, z(f), m("Failed %s type: %s", n, o.message), z(null));
           }
       }
     }
@@ -634,7 +634,7 @@ React keys must be passed directly to JSX without using spread:
 }
 process.env.NODE_ENV === "production" ? re.exports = bt() : re.exports = _t();
 var F = re.exports;
-class Tt extends z {
+class Tt extends B {
   componentDidMount() {
   }
   componentWillUnmount() {
@@ -646,7 +646,7 @@ class Tt extends z {
     return this.defaultNode || (this.defaultNode = document.createElement("div"), this.defaultNode.className = "dragAndDropPortal", document.body.appendChild(this.defaultNode)), yt.createPortal(this.props.children, this.defaultNode);
   }
 }
-class ke extends z {
+class ke extends B {
   constructor(l) {
     super(l), this.state = {
       scroll_top: 0,
@@ -671,8 +671,8 @@ class ke extends z {
       top: this.props.parentState.mouse.y - (l.clickY - l.initialTopOffset) - r.top,
       display: this.props.dragging ? "block" : "none",
       pointerEvents: "none",
-      width: l.containerWidth,
-      height: l.containerHeight
+      width: this.props.useContainerSize ? l.containerWidth : "auto",
+      height: this.props.useContainerSize ? l.containerHeight : "auto"
     };
     return this.props.dragging ? /* @__PURE__ */ F.jsx(Tt, { children: /* @__PURE__ */ F.jsx("div", { style: a, ref: (i) => {
       this.ghostElem = i;
@@ -690,7 +690,7 @@ ke.propTypes = {
 function Dt(g) {
   return (g.buttons || g.which || g.button) === 1;
 }
-class je extends z {
+class je extends B {
   constructor(r) {
     super(r);
     v(this, "setGhostElem", (r) => {
@@ -829,6 +829,7 @@ class je extends z {
           zIndex: this.props.zIndex,
           setGhostElem: this.setGhostElem,
           parentState: this.state,
+          useContainerSize: !this.props.customDragElement,
           children: /* @__PURE__ */ F.jsx("div", { style: { opacity: this.props.dragCloneOpacity, cursor: "move" }, children: i })
         }
       );
@@ -900,7 +901,7 @@ je.defaultProps = {
   zIndex: 1e3,
   dragStartThreshold: 0
 };
-class Le extends z {
+class Le extends B {
   constructor(l) {
     super(l), this.elem = null, this.handleDrop = this.handleDrop.bind(this), this._dragEnterHandler = (r) => {
       this.props.onDragEnter(r);

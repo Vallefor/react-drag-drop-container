@@ -42,8 +42,8 @@ class DragDropGhost extends Component {
 			top: this.props.parentState.mouse.y - (par.clickY - par.initialTopOffset) - scroll.top,
 			display: this.props.dragging ? 'block' : 'none',
 			pointerEvents: 'none',
-			width: par.containerWidth,
-			height: par.containerHeight,
+			width: this.props.useContainerSize ? par.containerWidth : 'auto',
+			height: this.props.useContainerSize ? par.containerHeight : 'auto',
 		};
 		if (!this.props.dragging) {
 			return null;

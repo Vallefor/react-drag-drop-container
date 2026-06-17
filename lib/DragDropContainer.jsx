@@ -285,6 +285,7 @@ class DragDropContainer extends Component {
 					dragging={this.state.dragging} left={this.state.left} top={this.state.top} zIndex={this.props.zIndex}
 					setGhostElem={this.setGhostElem}
 					parentState={this.state}
+					useContainerSize={!this.props.customDragElement}
 				>
 					<div style={{opacity: this.props.dragCloneOpacity, cursor: 'move'}}>
 						{ghostContent}
